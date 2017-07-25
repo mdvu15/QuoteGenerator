@@ -1,0 +1,7 @@
+
+<div style="text-align: center;">
+    <button (click)="getQuote()">New quote</button>
+</div>
+<div style="text-align: center;" *ngIf="newQuote">
+    <h2>{{newQuote.author}}</h2> 
+</div>
