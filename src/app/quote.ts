@@ -1,4 +1,7 @@
 export class Quote {
-    public content: string;
-    public author: string;
+    public quoteText: string;
+    public quoteAuthor: string;
+    public senderName: string;
+    public senderLink: string;
+    public quoteLink: string;
 }    

@@ -11,10 +11,13 @@ import { Quote } from './quote';
 
 export class QuoteComponent implements OnInit {
     quote: Quote;
-
     constructor(private quoteService: QuoteService) {}
 
     getQuote(): void {
-        
+        this.quoteService.getQuote().then(quote => this.quote = quote);
+    }
+
+    ngOnInit(): void {
+        this.getQuote();
     }
 }
