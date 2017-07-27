@@ -24,7 +24,7 @@ export class QuoteComponent implements OnInit {
         }
     } 
 
-    shareTwitter(): void {
+    tweet(): void {
         this.nativeWindow.getWindow()
         .open(`https://twitter.com/intent/tweet?text=${this.quote.quoteText}-${this.quote.quoteAuthor}`);
     }
