@@ -4,4 +4,11 @@
 </div>
 <div style="text-align: center;" *ngIf="quote">
     <h2>{{quote.quoteText}}</h2> 
+    <div *ngIf="quote.quoteAuthor !== '';else unknown"> <!-- display ng-template 'unknown'
+    if there's no author -->
+    	<h3>{{quote.quoteAuthor}}</h3>
+    </div>
+    <ng-template #unknown>
+    	<h3> Unknown </h3>
+    </ng-template> 
 </div>

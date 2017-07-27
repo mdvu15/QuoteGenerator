@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams, Jsonp } from '@angular/http';
-
+import { Http, Jsonp } from '@angular/http';
+//jsonp is used to bypass cross-origin request sharing (CORS) restriction 
+//for json request on different domains (cannot use html)
 import 'rxjs/add/operator/toPromise';
 
 import { Quote } from './quote';
@@ -9,18 +10,12 @@ import { Quote } from './quote';
 export class QuoteService {
     constructor(private jsonp: Jsonp) {}
 
-    private params: URLSearchParams = new URLSearchParams({
-        method: 'getQuote',
-        format: 'json',
-        lang: 'en',
-        jsonp: "JSONP_CALLBACK"
-    });
-    private quoteUrl = 'http://api.forismatic.com/api/1.0/';
+    private quoteUrl = `http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=JSONP_CALLBACK`;
+    //JSONP_CALLBACK = default callback function to handle jsonp result
     getQuote(): Promise<Quote> {
-        return this.jsonp.get(this.quoteUrl, {
-            search: this.params})
+        return this.jsonp.get(this.quoteUrl)
         .toPromise()
-        .then(response => response.json().data as Quote)
+        .then(response => response.json() as Quote)
         .catch(this.errorHandling);
     }
 
