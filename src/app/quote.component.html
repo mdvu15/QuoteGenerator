@@ -5,7 +5,10 @@
 	<div class="author"> 
 		<div>- {{quote.quoteAuthor}}</div> </div>
 	<div class = "buttons">
-	    <button (click)="getQuote()" id="new-quote" class="button">New quote</button>
+	    <button (click)="getQuote(); getColor(); toggleState()" id="new-quote" class="button" 
+	    [@changeColor]='state' [style.background-color]="color">
+	    New quote
+	    </button>
 	    <button (click)="tweet()" id="twitter" class="button"><i class="fa fa-twitter"></i></button>
 	</div>
 </div>

@@ -11,7 +11,7 @@ export class QuoteService {
     constructor(private jsonp: Jsonp) {}
 
     private quoteUrl = `http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=JSONP_CALLBACK`;
-    //JSONP_CALLBACK = default callback function to handle jsonp result
+    //JSONP_CALLBACK = default callback function to handle jsonp result in angular 2
     getQuote(): Promise<Quote> {
         return this.jsonp.get(this.quoteUrl)
         .toPromise()

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http'; 
 

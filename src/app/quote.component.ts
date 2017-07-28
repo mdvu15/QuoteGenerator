@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/core';
 
 import { WindowService } from './window.service';
 import { QuoteService } from './quote.service';
@@ -8,13 +9,31 @@ import { Quote } from './quote';
 	selector: 'quote',
 	templateUrl: './quote.component.html',
 	styleUrls: ['./quote.component.css'],
-    providers: [WindowService]
+    providers: [WindowService],
+    animations: [
+        trigger('changeColor', [
+            state('one', style({
+                background-color: '*',
+                color: '*' 
+            })),
+            state('two', style({
+                background-color: '*',
+                color: '*'
+            })),
+            animate('one <=> two', animate('1000ms ease-in-out'))
+            ]
+        )
+    ]
 })
 
 export class QuoteComponent implements OnInit {
+    private color: any;
+    private colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
     public quote: Quote;
+    public state: string = "one";
     constructor(private quoteService: QuoteService,
-                private nativeWindow: WindowService
+                private nativeWindow: WindowService,
+                private math: Math
                 ) {}
 
     getQuote(): void {
@@ -30,7 +49,18 @@ export class QuoteComponent implements OnInit {
         .open(`https://twitter.com/intent/tweet?text="${this.quote.quoteText}" - ${this.quote.quoteAuthor}`);
     }
 
+    toggleState(): void {
+        this.state = (this.state === "one" ? "two" : "one");
+    } //toggle between two states once the button is clicked
+      //use for animation
+
+    getColor() {
+        var index = this.math.floor(this.math.random() * this.colors.length);
+        this.color = this.colors[index];
+    } //set the current color to a random color from the list
+
     ngOnInit(): void {
-        this.getQuote();
+        this.getQuote(); //get quote upon intialization
+        this.getColor();
     }
 }
