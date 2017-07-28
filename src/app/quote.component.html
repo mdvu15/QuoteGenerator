@@ -7,6 +7,7 @@
 	<div class = "buttons">
 	    <button (click)="getQuote(); getColor(); toggleState()" id="new-quote" class="button" 
 	    [@changeColor]='state' [style.background-color]="color">
+	    <!-- change the color, then switch the state? -->
 	    New quote
 	    </button>
 	    <button (click)="tweet()" id="twitter" class="button"><i class="fa fa-twitter"></i></button>
