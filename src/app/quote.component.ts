@@ -7,7 +7,7 @@ import { Quote } from './quote';
 @Component({
 	selector: 'quote',
 	templateUrl: './quote.component.html',
-	//styleUrls: ['./quote.component.css']
+	styleUrls: ['./quote.component.css'],
     providers: [WindowService]
 })
 
@@ -18,15 +18,16 @@ export class QuoteComponent implements OnInit {
                 ) {}
 
     getQuote(): void {
-        this.quoteService.getQuote().then(quote => this.quote = quote);
-        if (this.quote.quoteAuthor === "") {
-            this.quote.quoteAuthor = "Unknown";
-        }
-    } 
+        this.quoteService.getQuote().then(quote => this.quote = quote)
+        .then(() => this.quote.quoteAuthor = this.quote.quoteAuthor === "" ? 
+            "Unknown" : this.quote.quoteAuthor)
+        //change author to Unknown if this.quote.quoteAuthor === ""
+        .catch(error => {console.log(error)})
+    }
 
     tweet(): void {
-        this.nativeWindow.getWindow()
-        .open(`https://twitter.com/intent/tweet?text=${this.quote.quoteText}-${this.quote.quoteAuthor}`);
+        this.nativeWindow.getWindow()//return window object
+        .open(`https://twitter.com/intent/tweet?text="${this.quote.quoteText}" - ${this.quote.quoteAuthor}`);
     }
 
     ngOnInit(): void {

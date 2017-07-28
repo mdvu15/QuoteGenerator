@@ -1,9 +1,11 @@
-
-<div style="text-align: center;">
-    <button (click)="getQuote()">New quote</button>
-    <button (click)="tweet()">Tweet this!</button>
-</div>
-<div style="text-align: center;" *ngIf="quote">
-    <h2>{{quote.quoteText}}</h2> 
-	<h3>{{quote.quoteAuthor}}</h3>
+<div class="quote-box" *ngIf="quote">
+    <div class="quote-text"> 
+    	<i class="fa fa-quote-left"> </i>
+    	<span>{{quote.quoteText}}</span> </div>
+	<div class="author"> 
+		<div>- {{quote.quoteAuthor}}</div> </div>
+	<div class = "buttons">
+	    <button (click)="getQuote()" id="new-quote" class="button">New quote</button>
+	    <button (click)="tweet()" id="twitter" class="button"><i class="fa fa-twitter"></i></button>
+	</div>
 </div>
