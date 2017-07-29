@@ -1,15 +1,16 @@
 <div class="quote-box" *ngIf="quote">
     <div class="quote-text"> 
-    	<i class="fa fa-quote-left"> </i>
-    	<span>{{quote.quoteText}}</span> </div>
+    	<i [style.color]="color" class="fa fa-quote-left"> </i>
+    	<span [style.color]="color"> {{quote.quoteText}}</span> </div>
 	<div class="author"> 
-		<div>- {{quote.quoteAuthor}}</div> </div>
+		<div [style.color]="color">- {{quote.quoteAuthor}}</div> </div>
 	<div class = "buttons">
-	    <button (click)="getQuote(); getColor(); toggleState()" id="new-quote" class="button" 
-	    [@changeColor]='state' [style.background-color]="color">
+	    <button (click)="getQuote(); getColor()" id="new-quote" class="button" 
+	    [ngStyle]="{'background-color': this.color}" >
 	    <!-- change the color, then switch the state? -->
 	    New quote
 	    </button>
-	    <button (click)="tweet()" id="twitter" class="button"><i class="fa fa-twitter"></i></button>
+	    <button (click)="tweet()" id="twitter" class="button" [ngStyle]="{'background-color': this.color}"><i class="fa fa-twitter"></i>
+	    </button>
 	</div>
 </div>

@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http'; 
 
@@ -16,7 +15,7 @@ import { QuoteService } from './quote.service';
   imports: [
     BrowserModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
   ],
   providers: [QuoteService],
   bootstrap: [AppComponent]
